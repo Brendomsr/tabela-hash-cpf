@@ -1,0 +1,59 @@
+import java.util.HashMap;
+
+public class TabelaHashClientes {
+    private HashMap<String, Cliente> tabelaHash;
+
+    // Construtor
+    public TabelaHashClientes() {
+        tabelaHash = new HashMap<>();
+    }
+
+    // Método para adicionar um cliente à tabela hash
+    public void adicionarCliente(String cpf, Cliente cliente) {
+        tabelaHash.put(cpf, cliente);
+    }
+
+    // Método para buscar um cliente pelo CPF
+    public Cliente buscarCliente(String cpf) {
+        return tabelaHash.get(cpf);
+    }
+
+    // Classe Cliente (apenas para fins de exemplo)
+    public class Cliente {
+        private String nome;
+        private String endereco;
+        // Outros atributos do cliente
+
+        // Construtor
+        public Cliente(String nome, String endereco) {
+            this.nome = nome;
+            this.endereco = endereco;
+            // Inicializar outros atributos, se houver
+        }
+
+        // Métodos getters e setters, se necessário
+    }
+
+    // Método main para testar a implementação
+    public static void main(String[] args) {
+        TabelaHashClientes tabela = new TabelaHashClientes();
+
+        // Exemplo de adição de clientes à tabela
+        Cliente cliente1 = tabela.new Cliente("João", "Rua A");
+        Cliente cliente2 = tabela.new Cliente("Maria", "Rua B");
+
+        tabela.adicionarCliente("12345678900", cliente1);
+        tabela.adicionarCliente("98765432100", cliente2);
+
+        // Exemplo de busca de cliente pelo CPF
+        String cpfBusca = "12345678900";
+        Cliente clienteEncontrado = tabela.buscarCliente(cpfBusca);
+        if (clienteEncontrado != null) {
+            System.out.println("Cliente encontrado:");
+            System.out.println("Nome: " + clienteEncontrado.nome);
+            System.out.println("Endereço: " + clienteEncontrado.endereco);
+        } else {
+            System.out.println("Cliente com CPF " + cpfBusca + " não encontrado.");
+        }
+    }
+}
